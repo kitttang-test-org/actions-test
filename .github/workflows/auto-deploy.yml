@@ -1,0 +1,16 @@
+# This is a workflow that is automatically triggered when the forms folder is updated on branch v2
+
+name: Auto deployment workflow
+
+# Controls when the action will run. Workflow runs automatically when the form folder is updated
+on:
+  repository_dispatch:
+    types: [call-form-deploy]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send greeting
+      run: echo "Hello World"
