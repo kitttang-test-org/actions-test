@@ -4,8 +4,36 @@ name: Auto deployment workflow
 
 # Controls when the action will run. Workflow runs automatically when the form folder is updated
 on:
-  repository_dispatch:
-    types: [call-form-deploy]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Web forms (digital form builder) branch to deploy"
+        type: string
+        required: true
+        default: "v2"
+      environment:
+        description: "Environment to deploy the solution"
+        type: choice
+        required: true
+        options:
+          - dev
+          - test
+          - stg
+          - prod
+      modules_version:
+        description: "Modules version to use in the solution"
+        type: string
+        required: true
+        default: "XG1.0.0"
+      webforms_terraform_action:
+        description: "Plan & Apply or Destroy"
+        type: string
+        required: true
+        default: "Plan & Apply"
+      Build-Runner:
+        description: "Deploy the Webforms Runner"
+        type: boolean
+        default: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -13,4 +41,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Send greeting
-      run: echo "Hello World"
+      run: echo "${{ inputs.branch }} ${{ inputs.environment }} ${{ inputs.modules_version }} ${{ inputs.branch }} ${{ github.actor }}"
