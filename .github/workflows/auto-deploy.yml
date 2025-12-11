@@ -20,20 +20,6 @@ on:
           - test
           - stg
           - prod
-      modules_version:
-        description: "Modules version to use in the solution"
-        type: string
-        required: true
-        default: "XG1.0.0"
-      webforms_terraform_action:
-        description: "Plan & Apply or Destroy"
-        type: string
-        required: true
-        default: "Plan & Apply"
-      Build-Runner:
-        description: "Deploy the Webforms Runner"
-        type: boolean
-        default: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
